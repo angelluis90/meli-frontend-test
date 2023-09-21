@@ -1,0 +1,16 @@
+.sbSearchContainer {
+  @apply relative w-full overflow-hidden rounded focus-within:shadow-md;
+}
+
+.sbInput {
+  @apply h-10 w-full outline-none text-[18px] pl-4 pr-14 py-2 placeholder:text-dark-gray;
+}
+
+.sbSubmitBtn {
+  @apply absolute right-0 top-0 h-full w-10 flex justify-center items-center 
+         bg-light outline-none focus-visible:bg-gray-300;
+
+  img {
+    @apply md:h-5;
+  }
+}

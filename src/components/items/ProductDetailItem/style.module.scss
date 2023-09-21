@@ -1,0 +1,28 @@
+.product {
+  &__container {
+    @apply md:gap-x-8 md:grid lg:grid-cols-[4fr_1fr];
+  }
+
+  &__info {
+    @apply lg:w-[246px] min-w-min;
+  }
+
+  &__image {
+    img {
+      @apply w-full;
+    }
+  }
+
+  &__description {
+    @apply w-full mt-20;
+
+    h2 {
+      @apply text-[28px] mb-8;
+    }
+
+    pre,
+    p {
+      @apply text-dark-gray;
+    }
+  }
+}

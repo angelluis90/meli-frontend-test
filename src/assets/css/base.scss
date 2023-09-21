@@ -1,0 +1,17 @@
+body {
+    @apply bg-light leading-tight font-body text-base min-h-screen;
+
+    .page__content {
+        @apply bg-white p-8 rounded-t shadow-[0px_0px_16px_-8px_rgba(0,0,0,.1)];
+    }
+
+    .currency {
+        sup {
+            @apply text-[60%];
+        }
+    }
+}
+
+pre {
+    @apply font-body whitespace-pre-line;
+}

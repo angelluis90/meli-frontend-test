@@ -1,0 +1,38 @@
+.product {
+  &__item {
+    @apply grid md:grid-cols-[180px_auto_160px] gap-4 pb-4 mb-4 border-b border-solid
+           border-light last:mb-0 last:border-0 last:pb-0;
+  }
+
+  &__image {
+    @apply w-[180px] h-[180px] overflow-hidden rounded;
+
+    img {
+      @apply object-cover object-center w-full h-full;
+    }
+  }
+
+  &__info {
+    @apply md:py-4;
+  }
+
+  &__price_container {
+    @apply flex gap-x-2 md:mb-6 items-center;
+
+    img {
+      @apply w-6 h-6;
+    }
+  }
+
+  &__price {
+    @apply text-[24px];
+  }
+
+  &__title {
+    @apply text-[18px];
+  }
+
+  &__location {
+    @apply text-xs text-light-gray md:pt-7;
+  }
+}

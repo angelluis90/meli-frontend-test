@@ -1,0 +1,11 @@
+.header {
+  @apply bg-primary w-full py-2 mb-4;
+
+  .hContainer {
+    @apply grid place-items-center grid-cols-[60px_auto] gap-4 container;
+  }
+
+  .hLogo {
+    @apply h-9 md:h-10 w-auto;
+  }
+}
