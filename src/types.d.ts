@@ -56,6 +56,14 @@ export type TCategoryStore = {
   setIsLoading: (loading: boolean) => void;
 };
 
+export type Status = "success" | "error"
+
+export type Response<T> = {
+  status: Status;
+  data: T | null;
+  error: string;
+};
+
 // The code below is used to typing the responses from the MELI's APIs
 export type TMELISearchResult = {
   site_id: string;
