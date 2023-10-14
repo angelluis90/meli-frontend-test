@@ -1,56 +1,24 @@
-import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { API_URL } from "@utils/constants";
+import useDetails from "@src/hooks/useDetails";
 import SkeletonProduct from "@components/elements/SkeletonProduct";
-import ErrorMessage from "@components/global/ErrorMessage";
-import { TApiResponseDetails, TProductInfoDetails } from "@types";
 import ProductDetailItem from "@src/components/items/ProductDetailItem";
-import useCategories from "@src/store/categories";
 
 export default function ProductDetailsPage() {
   const { id } = useParams();
-  const [data, setData] = useState<TProductInfoDetails | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
+  const { loading, details, error } = useDetails(id ?? "");
 
-  const setCategories = useCategories((state) => state.setCategories);
-  const setCategoriesLoading = useCategories((state) => state.setIsLoading);
-
-  const getDetails = useCallback(async () => {
-    setIsLoading(true);
-    setHasError(false);
-    setCategoriesLoading(true);
-    fetch(`${API_URL}/items/${id}`, { method: "GET" })
-      .then((response) => response.json())
-      .then(({ item, categories }: TApiResponseDetails) => {
-        if (categories) {
-          setCategories(categories);
-          setCategoriesLoading(false);
-        }
-        if (item) setData(item);
-        else setHasError(true);
-      })
-      .catch(() => {
-        setHasError(true);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [id]);
-
-  useEffect(() => {
-    getDetails();
-  }, [getDetails]);
+  if (loading) return <SkeletonProduct />;
+  if (error) return <h3 className="bg-red-400 p-3 w-full rounded">{error}</h3>;
+  if (!details)
+    return (
+      <h3 className="bg-blue-200 p-3 w-full rounded">
+        No se encontraron resultados para su búsqueda
+      </h3>
+    );
 
   return (
-    <>
-      <div className="page__content product__details w-full">
-        {isLoading ? <SkeletonProduct /> : null}
-        {!isLoading && data ? <ProductDetailItem {...data} /> : null}
-      </div>
-      <ErrorMessage show={hasError} type="error">
-        No fue posible encontrar la información solicitada
-      </ErrorMessage>
-    </>
+    <div className="page__content product__details w-full">
+      <ProductDetailItem {...details} />
+    </div>
   );
 }
