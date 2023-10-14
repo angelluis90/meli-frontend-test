@@ -97,6 +97,7 @@ const getCategoriesByResults = async (
   items: TProductInfoWithCategory[]
 ): Promise<string[]> => {
   const categories: Record<string, number> = {};
+  if (!items || items.length === 0) return []
   for (let i = 0; i < items.length; i++) {
     const { category_id: ci } = items[i];
     if (!categories[ci]) categories[ci] = 1;
